@@ -1,0 +1,24 @@
+{
+  "name": "my-app1-standalone",
+  "version": "1.0.0",
+  "main": "index.tsx",
+  "scripts": {
+    "start": "webpack serve --config webpack.config.js --mode development",
+    "build": "webpack --config webpack.config.js --mode production"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.0.0",
+    "webpack-dev-server": "^4.0.0",
+    "html-webpack-plugin": "^5.0.0"
+  }
+}
