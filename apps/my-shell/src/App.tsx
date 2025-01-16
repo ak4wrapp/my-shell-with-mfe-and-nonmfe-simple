@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import App3Tab from "./components/App3Tab";
 
 // Dynamically import App from MFE (my_app1_mfe)
 const App1 = React.lazy(() => import("my_app1_mfe/App"));
@@ -118,6 +119,7 @@ const App = () => {
           >
             <Tab label="App 1" value="app1" />
             <Tab label="App 2" value="app2" />
+            <Tab label="App 3" value="app3" />
           </Tabs>
 
           {/* Main Tab Content */}
@@ -134,6 +136,7 @@ const App = () => {
                 title="App 2"
               />
             )}
+            {activeTab === "app3" && <App3Tab />}
           </Container>
 
           {/* Footer */}
