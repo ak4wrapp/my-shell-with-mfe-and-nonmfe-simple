@@ -40,7 +40,7 @@ const theme = createTheme({
 });
 
 const App = () => {
-  const [activeTab, setActiveTab] = useState<string>("app1");
+  const [activeTab, setActiveTab] = useState<string>("home");
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
 
   // Handle Tab changes
@@ -117,6 +117,7 @@ const App = () => {
             centered
             sx={{ bgcolor: "background.paper" }}
           >
+            <Tab label="Home" value="home" />
             <Tab label="App 1" value="app1" />
             <Tab label="App 2" value="app2" />
             <Tab label="App 3" value="app3" />
@@ -124,6 +125,7 @@ const App = () => {
 
           {/* Main Tab Content */}
           <Container sx={{ flexGrow: 1, padding: 3 }}>
+            {activeTab === "home" && <h1>Welcome Home</h1>}
             {activeTab === "app1" && (
               <React.Suspense fallback={<div>Loading App 1...</div>}>
                 <App1 />
