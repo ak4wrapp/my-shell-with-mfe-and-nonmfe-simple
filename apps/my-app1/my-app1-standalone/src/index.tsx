@@ -1,10 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
 
-// Dynamically import App from the MFE (my_app1_mfe)
-const App = React.lazy(() => import('my_app1_mfe/App')); // This is the remote module
+// Get the root element safely and handle potential null values
+const rootElement = document.getElementById("root");
+if (!rootElement) {
+  throw new Error("Root element not found");
+}
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const root = ReactDOM.createRoot(rootElement); // Create the root for React 18
+
 root.render(
   <React.StrictMode>
     <React.Suspense fallback={<div>Loading...</div>}>

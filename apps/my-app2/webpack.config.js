@@ -1,39 +1,38 @@
-const path = require('path');
-const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.tsx',
-  mode: 'development',
+  entry: "./src/index.tsx", // Your entry point for React app
+  mode: "development",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: 'auto',
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js", // Single bundled file for your app
+    publicPath: "auto", // Ensure correct pathing in dev mode
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"], // Resolve TypeScript and JS
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
-      }
-    ]
-  },
-  
-  plugins: [
-    new ModuleFederationPlugin({
-      name: 'my-app2',
-      filename: 'remoteEntry.js',
-      exposes: {
-        './App': './src/App'
+        use: "ts-loader", // Compile TypeScript
+        exclude: /node_modules/,
       },
-      shared: { react: { singleton: true }, 'react-dom': { singleton: true } }
-    })
+      {
+        test: /\.css$/, // Handle CSS files
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+  plugins: [
+    // Automatically inject the bundle.js into index.html
+    new HtmlWebpackPlugin({
+      template: "./public/index.html", // Path to your HTML template
+    }),
   ],
   devServer: {
-    static: path.join(__dirname, 'dist'),
-    port: 3003
-  }
+    static: path.join(__dirname, "dist"), // Serve from the 'dist' directory
+    port: 3003, // Port for the app
+  },
 };

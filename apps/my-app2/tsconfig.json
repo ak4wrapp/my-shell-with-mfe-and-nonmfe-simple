@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "lib": ["dom", "esnext"],
+      "module": "esnext",
+      "moduleResolution": "node",
+      "jsx": "react-jsx", // Required for React 17+ and 18 JSX Transform
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
+  }
+  
