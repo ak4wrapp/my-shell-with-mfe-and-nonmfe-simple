@@ -9,3 +9,8 @@
 - https://micro-frontends.org/
 - https://martinfowler.com/articles/micro-frontends.html
 
+# Container Initialization Error
+- Use webpack 5.88.2
+# shared-module-is-not-available-for-eager-consumption
+- Need Bootstrap.tsx
+- https://webpack.js.org/concepts/module-federation/#uncaught-error-shared-module-is-not-available-for-eager-consumption
