@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   AppBar,
   Toolbar,
@@ -17,6 +17,9 @@ import {
 import { Menu as MenuIcon } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import App3Tab from "./components/App3Tab";
+import ErrorBoundary from "./components/ErrorBoundary"; // import the ErrorBoundary
+import { checkRemoteEntry } from "./utils/checkRemoteEntry"; // Import the checkRemoteEntry function
+import mfeConfig from "./config/mfeConfig";
 
 // Dynamically import App from MFE (my_app1_mfe)
 const App1 = React.lazy(() => import("my_app1_mfe/App"));
@@ -42,7 +45,15 @@ const theme = createTheme({
 const App = () => {
   const [activeTab, setActiveTab] = useState<string>("home");
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
+  const [isMFEAvailable, setIsMFEAvailable] = useState<boolean>(true);
 
+  useEffect(() => {
+    const checkMFE = async () => {
+      const isAvailable = await checkRemoteEntry(mfeConfig.my_app1_mfe);
+      setIsMFEAvailable(isAvailable);
+    };
+    checkMFE();
+  }, []);
   // Handle Tab changes
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
     setActiveTab(newValue);
@@ -127,9 +138,17 @@ const App = () => {
           <Container sx={{ flexGrow: 1, padding: 3 }}>
             {activeTab === "home" && <h1>Welcome Home</h1>}
             {activeTab === "app1" && (
-              <React.Suspense fallback={<div>Loading App 1...</div>}>
-                <App1 />
-              </React.Suspense>
+              <ErrorBoundary>
+                {isMFEAvailable ? (
+                  <React.Suspense fallback={<div>Loading App 1...</div>}>
+                    <App1 />
+                  </React.Suspense>
+                ) : (
+                  <div>
+                    Error loading the microfrontend. Please try again later.
+                  </div>
+                )}
+              </ErrorBoundary>
             )}
             {activeTab === "app2" && (
               <iframe

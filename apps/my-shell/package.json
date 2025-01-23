@@ -4,6 +4,7 @@
   "main": "index.tsx",
   "scripts": {
     "start": "webpack serve --config webpack.config.js --mode development",
+    "serve": "webpack serve --config webpack.config.js",
     "build": "webpack --config webpack.config.js --mode production"
   },
   "dependencies": {

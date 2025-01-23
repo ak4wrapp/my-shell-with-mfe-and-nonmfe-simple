@@ -1,5 +1,6 @@
 const path = require("path");
 const { ModuleFederationPlugin } = require("webpack").container;
+const mfeConfig = require("./src/config/mfeConfig"); // Ensure the correct path and extension
 
 module.exports = {
   entry: "./src/index.tsx", // Entry point for the standalone app
@@ -33,7 +34,7 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "my_shell",
       remotes: {
-        my_app1_mfe: "my_app1_mfe@http://localhost:3001/remoteEntry.js", // Reference MFE app
+        my_app1_mfe: `my_app1_mfe@${mfeConfig.my_app1_mfe}`, // Reference MFE app
       },
       shared: {
         react: { singleton: true, eager: true }, // React should be singleton
