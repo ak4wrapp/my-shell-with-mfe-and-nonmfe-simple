@@ -25,6 +25,9 @@ const Dashboard = () => {
     <Container maxWidth="lg" sx={{ marginTop: 4 }}>
       <Typography variant="h3" gutterBottom>
         Welcome to My App 3
+        <h5>
+          This app does not use webpack but just react scripts to run the app.
+        </h5>
       </Typography>
       <Grid container spacing={4}>
         <Grid item xs={12} sm={6} md={4}>

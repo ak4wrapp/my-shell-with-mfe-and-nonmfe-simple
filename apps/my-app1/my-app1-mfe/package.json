@@ -2,9 +2,10 @@
   "name": "my-app1-mfe",
   "version": "1.0.0",
   "private": true,
-  "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+  "scripts": {
+    "start": "webpack serve --config webpack.config.js --mode development",
+    "build": "webpack --config webpack.config.js --mode production",
+    "lint": "eslint src --ext .ts,.tsx"
   },
   "devDependencies": {
     "@types/react": "^19.0.6",
@@ -23,11 +24,6 @@
   "files": [
     "dist"
   ],
-  "scripts": {
-    "start": "webpack serve --config webpack.config.js --mode development",
-    "build": "webpack --config webpack.config.js --mode production",
-    "lint": "eslint src --ext .ts,.tsx"
-  },
   "main": "dist/index.js",
   "module": "dist/index.js"
 }

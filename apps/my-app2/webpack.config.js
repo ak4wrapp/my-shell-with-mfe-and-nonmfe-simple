@@ -4,6 +4,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: "./src/index.tsx", // Your entry point for React app
   mode: "development",
+  devServer: {
+    static: path.join(__dirname, "dist"), // Serve from the 'dist' directory
+    port: 3003, // Port for the app
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js", // Single bundled file for your app
@@ -31,8 +35,4 @@ module.exports = {
       template: "./public/index.html", // Path to your HTML template
     }),
   ],
-  devServer: {
-    static: path.join(__dirname, "dist"), // Serve from the 'dist' directory
-    port: 3003, // Port for the app
-  },
 };
